@@ -1,0 +1,60 @@
+definitions:
+  model.ErrorResponse:
+    properties:
+      detail:
+        type: string
+    type: object
+  model.Period:
+    properties:
+      semester:
+        type: integer
+      start_date:
+        type: string
+      year_end:
+        type: integer
+      year_start:
+        type: integer
+    type: object
+  model.Week:
+    properties:
+      week:
+        type: integer
+    type: object
+info:
+  contact: {}
+paths:
+  /semester:
+    get:
+      consumes:
+      - application/json
+      description: Get current semester info
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Period'
+      summary: Get current semester info
+      tags:
+      - Semester
+  /week:
+    get:
+      consumes:
+      - application/json
+      description: Get current week number
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Week'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/model.ErrorResponse'
+      summary: Get current week number
+      tags:
+      - Semester
+swagger: "2.0"
